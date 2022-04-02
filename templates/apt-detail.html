@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+			<!-- Main -->
+				<section id="main" class="container">
+					<header>
+						<h2>{{ apartment.title }}</h2>
+						<p>A generic page for every non-generic situation.</p>
+					</header>
+					<div class="box">
+<!--						<span class="image featured"><img src="{{ apartment.get_image }}" style="width: auto; height: auto;" alt="" /></span>-->
+						<p>Posted: {{ apartment.created }}</p>
+						<p>Author: {{ apartment.user.username }}</p>
+						<div class="row">
+							<div class="row-6 row-12-mobilep">
+								{% for image in images %}
+								<img src="{{ image }}" style="width: 500px; height: 500px;" class="img-thumbnail" alt="...">
+								{% endfor %}
+								<h3>{{ apartment.description|truncatewords:5 }}</h3>
+								<p>{{ apartment.description }}</p>
+								<a href="{% url 'update-info' apartment.id %}"><i class="fas fa-edit"></i></a>
+								<a href="{% url 'delete-info' apartment.id %}"><i class="fas fa-trash-alt"></i></a>
+							</div>
+						</div>
+					</div>
+				</section>
+{% endblock %}
